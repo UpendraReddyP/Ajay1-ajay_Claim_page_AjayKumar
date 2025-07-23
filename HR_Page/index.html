@@ -830,7 +830,7 @@
 
         async function updateTables(filterValue = 'all') {
             try {
-                const response = await fetch('http://44.223.23.145:3407/api/claims');
+                const response = await fetch('http://13.60.170.238:3105/api/claims');
                 const claims = await response.json();
 
                 const pendingTableBody = document.querySelector('#pendingTable tbody');
@@ -991,7 +991,7 @@
             if (!confirmed) return;
 
             try {
-                const response = await fetch(`http://44.223.23.145:3407/api/claims/${claimId}`, {
+                const response = await fetch(`http://13.60.170.238:3105/api/claims/${claimId}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1018,8 +1018,8 @@
         async function viewClaim(claimId) {
             try {
                 const [claimResponse, documentsResponse] = await Promise.all([
-                    fetch(`http://44.223.23.145:3407/api/claims?claim_id=${claimId}`),
-                    fetch(`http://44.223.23.145:3407/api/claims/${claimId}/documents`)
+                    fetch(`http://13.60.170.238:3105/api/claims?claim_id=${claimId}`),
+                    fetch(`http://13.60.170.238:3105/api/claims/${claimId}/documents`)
                 ]);
 
                 const claims = await claimResponse.json();
@@ -1089,12 +1089,12 @@
 
         async function downloadDocument(documentId, fileName) {
             try {
-                const response = await fetch(`http://44.223.23.145:3407/api/documents/${documentId}`);
+                const response = await fetch(`http://13.60.170.238:3105/api/documents/${documentId}`);
                 if (!response.ok) {
                     throw new Error('Failed to download document');
                 }
                 const a = document.createElement('a');
-                a.href = `http://44.223.23.145:3407/api/documents/${documentId}`;
+                a.href = `http://13.60.170.238:3105/api/documents/${documentId}`;
                 a.download = fileName;
                 document.body.appendChild(a);
                 a.click();
